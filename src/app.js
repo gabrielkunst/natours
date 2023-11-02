@@ -1,17 +1,14 @@
 const express = require("express");
-const app = express();
-const Tour = require("./handlers/tour");
 const morgan = require("morgan");
+const tourRouter = require("./routes/tourRoutes");
+const userRouter = require("./routes/userRoutes");
+
+const app = express();
 
 app.use(morgan("dev"));
 app.use(express.json());
+
 app.use("/api/v1/tours", tourRouter);
+app.use("/api/v1/user", userRouter);
 
-const tourRouter = express.Router();
-tourRouter.route("/").get(Tour.getAllTours).post(Tour.createTour);
-tourRouter.route("/:id").get(Tour.getTourById).delete(Tour.deleteTourById);
-
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+module.exports = app;
