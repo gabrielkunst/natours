@@ -1,14 +1,15 @@
 const express = require("express");
 const app = express();
 const Tour = require("./handlers/tour");
+const morgan = require("morgan");
 
+app.use(morgan("dev"));
 app.use(express.json());
+app.use("/api/v1/tours", tourRouter);
 
-app.route("/api/v1/tours").get(Tour.getAllTours).post(Tour.createTour);
-app
-  .route("/api/v1/tours/:id")
-  .get(Tour.getTourById)
-  .delete(Tour.deleteTourById);
+const tourRouter = express.Router();
+tourRouter.route("/").get(Tour.getAllTours).post(Tour.createTour);
+tourRouter.route("/:id").get(Tour.getTourById).delete(Tour.deleteTourById);
 
 const PORT = 5000;
 app.listen(PORT, () => {

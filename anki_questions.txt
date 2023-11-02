@@ -25,3 +25,4 @@ What is a pipeline?
 What happens if I don't call `next()` in middleware?
 Can I pass a property with the `next()` function, as in the case of using an Auth middleware?
 What happens if I put the middleware after the route handler?
+What is a sub-application?
