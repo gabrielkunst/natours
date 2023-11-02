@@ -25,6 +25,7 @@ function createTour(req, res) {
       status: "fail",
       message: "Missing tour object",
     });
+    return;
   }
 
   const newTourId = Math.floor(Math.random() * 1000000);
@@ -59,6 +60,7 @@ function getTourById(req, res) {
         status: "fail",
         message: "Invalid id",
       });
+      return;
     }
 
     const tour = tours.find((tour) => tour.id === id);
@@ -67,6 +69,7 @@ function getTourById(req, res) {
         status: "fail",
         message: "Tour not found",
       });
+      return;
     }
 
     res.status(200).json({
@@ -91,6 +94,7 @@ function deleteTourById(req, res) {
         status: "fail",
         message: "Invalid id",
       });
+      return;
     }
 
     const tour = tours.find((tour) => tour.id === id);
@@ -99,6 +103,7 @@ function deleteTourById(req, res) {
         status: "fail",
         message: "Tour not found",
       });
+      return;
     }
 
     const toursWithoutDeletedOne = tours.filter((tour) => tour.id !== id);
