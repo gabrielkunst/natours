@@ -10,6 +10,16 @@ const toursAsJson = fs.readFileSync(
 );
 const tours = JSON.parse(toursAsJson);
 
+app.get('/api/v1/tours', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    results: tours.length,
+    data: {
+      tours,
+    },
+  });
+});
+
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
