@@ -9,7 +9,15 @@ const toursAsJson = fs.readFileSync(
     encoding: 'utf-8',
   }
 );
-const tours = JSON.parse(toursAsJson);
+let tours = JSON.parse(toursAsJson);
+
+function rewriteTours(data, callback) {
+  fs.writeFile(
+    `${__dirname}/dev-data/data/tours-simple.json`,
+    JSON.stringify(data),
+    () => callback()
+  );
+}
 
 app.get('/api/v1/tours', (req, res) => {
   res.status(200).json({
@@ -30,18 +38,14 @@ app.post('/api/v1/tours', (req, res) => {
   };
 
   tours.push(newTour);
-  fs.writeFile(
-    `${__dirname}/dev-data/data/tours-simple.json`,
-    JSON.stringify(tours),
-    (err) => {
-      res.status(201).json({
-        status: 'success',
-        data: {
-          tour: newTour,
-        },
-      });
-    }
-  );
+  rewriteTours(tours, () => {
+    res.status(201).json({
+      status: 'success',
+      data: {
+        tour: newTour,
+      },
+    });
+  });
 });
 
 app.get('/api/v1/tours/:id', (req, res) => {
@@ -62,6 +66,36 @@ app.get('/api/v1/tours/:id', (req, res) => {
     data: {
       tour,
     },
+  });
+});
+
+app.delete('/api/v1/tours/:id', (req, res) => {
+  const id = Number(req.params.id);
+
+  if (id === undefined || isNaN(id)) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+    return;
+  }
+
+  const tour = tours.find((tour) => tour.id === id);
+
+  if (!tour) {
+    res.status(404).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+    return;
+  }
+
+  const toursWithoutDeleted = tours.filter((tour) => tour.id !== id);
+  rewriteTours(toursWithoutDeleted, () => {
+    res.status(200).json({
+      status: 'success',
+      message: 'Tour deleted successfully',
+    });
   });
 });
 
