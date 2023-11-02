@@ -5,7 +5,13 @@ const userRouter = require("./routes/userRoutes");
 
 const app = express();
 
-app.use(morgan("dev"));
+if (process.env.NODE_ENV === "development") {
+  console.log("Using dev environment");
+  app.use(morgan("dev"));
+} else {
+  console.log("Using production environment");
+}
+
 app.use(express.json());
 
 app.use("/api/v1/tours", tourRouter);
