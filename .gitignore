@@ -36,4 +36,3 @@ config.env
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-questions.txt

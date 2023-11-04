@@ -1,0 +1,36 @@
+What is Express?
+How do I create a route in Express?
+What is an API?
+Why is an API not just a URL?
+What is a REST API?
+What is a resource in a REST API?
+What does it mean to separate an API into logical resources?
+What is an API endpoint?
+What is the correct way to create an API endpoint in REST?
+What does creating a resource-based URL entail?
+Is the following URL a good example of a resource-based URL: `www.example.com/addNewTour`?
+What does using HTTP verbs in a REST API mean?
+Can endpoints include elements other than resources?
+What is the difference between PUT and PATCH in the context of APIs?
+What is response formatting?
+What is JSend?
+Why should I use versions in my API?
+What is a route handler?
+What is `__dirname`?
+How do I define a route parameter as optional?
+What is middleware?
+What is the use of the `next()` function in middleware?
+What is the request-response cycle?
+What is a pipeline?
+What happens if I don't call `next()` in middleware?
+Can I pass a property with the `next()` function, as in the case of using an Auth middleware?
+What happens if I put the middleware a fter the route handler?
+What is a sub-application?
+What is application logic?
+What is business logic? 
+What is fat models, thin controllers?
+Where should the business logic be placed in MVC?
+Where should the application logic be placed in MVC?
+
+
+
