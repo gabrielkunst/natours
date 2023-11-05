@@ -4,8 +4,6 @@ const dotenv = require("dotenv");
 dotenv.config({ path: `${__dirname}/../../config.env` });
 const Tour = require("../models/tourModel");
 
-console.log("DB IS ", process.env.DATABASE);
-
 const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
   process.env.DATABASE_PASSWORD

@@ -59,6 +59,14 @@ async function getTourById(req, res) {
   try {
     const id = req.params.id;
     const tour = await Tour.findById(id);
+
+    if (!tour) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Invalid ID",
+      });
+    }
+
     res.status(200).json({
       status: "success",
       data: {
@@ -79,6 +87,14 @@ async function updateTourById(req, res) {
       new: true,
       runValidators: true,
     });
+
+    if (!tour) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Invalid ID",
+      });
+    }
+
     res.status(200).json({
       status: "success",
       data: {
@@ -96,7 +112,15 @@ async function updateTourById(req, res) {
 async function deleteTourById(req, res) {
   try {
     const id = req.params.id;
-    await Tour.findByIdAndDelete(id);
+    const tour = await Tour.findByIdAndDelete(id);
+
+    if (!tour) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Invalid ID",
+      });
+    }
+
     res.status(204);
   } catch (error) {
     res.status(400).json({
