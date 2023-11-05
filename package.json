@@ -6,7 +6,8 @@
   "scripts": {
     "format": "prettier . --write",
     "dev": "nodemon ./src/server.js",
-    "start": "set NODE_ENV=production && nodemon ./src/server.js"
+    "start": "set NODE_ENV=production && nodemon ./src/server.js",
+    "debug": "ndb ./src/server.js"
   },
   "author": "",
   "license": "ISC",
