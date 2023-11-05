@@ -53,6 +53,26 @@ async function getTourById(req, res) {
   }
 }
 
+async function updateTourById(req, res) {
+  try {
+    const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({
+      status: "success",
+      data: {
+        tour,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      message: error,
+    });
+  }
+}
+
 async function deleteTourById(req, res) {
   try {
     const id = req.params.id;
@@ -70,5 +90,6 @@ module.exports = {
   getAllTours,
   createTour,
   getTourById,
+  updateTourById,
   deleteTourById,
 };
