@@ -31,6 +31,7 @@ What is business logic?
 What is fat models, thin controllers?
 Where should the business logic be placed in MVC?
 Where should the application logic be placed in MVC?
+What is the difference between operational and programmer errors?
 
 
 
